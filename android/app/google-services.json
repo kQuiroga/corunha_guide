@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "445617577864",
+    "firebase_url": "https://corunha-guide.firebaseio.com",
+    "project_id": "corunha-guide",
+    "storage_bucket": "corunha-guide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445617577864:android:2a430fed8d05124ec5e43d",
+        "android_client_info": {
+          "package_name": "com.kquiroga.corunha_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445617577864-4bsbog0ffbnvv0vnrc8t6vgjqb5r71hs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU692Fll2wWhMqJWsBwF8dH6lzV0TdQJI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445617577864-4bsbog0ffbnvv0vnrc8t6vgjqb5r71hs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
