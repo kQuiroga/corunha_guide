@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "445617577864-1ku6vc3h84n6rtgoju5a3cpndeet21v7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kquiroga.corunha_guide",
+            "certificate_hash": "2b083ffa0f95e99f4658fe787a12113685f10292"
+          }
+        },
+        {
           "client_id": "445617577864-4bsbog0ffbnvv0vnrc8t6vgjqb5r71hs.apps.googleusercontent.com",
           "client_type": 3
         }
