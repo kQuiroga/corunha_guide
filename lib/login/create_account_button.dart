@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:corunha_guide/models/user_repository.dart';
+import 'package:corunha_guide/services/user_repository.dart';
 import 'package:corunha_guide/register/register.dart';
 
 class CreateAccountButton extends StatelessWidget {

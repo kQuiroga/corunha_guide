@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:corunha_guide/authentication_bloc/bloc.dart';
-import 'package:corunha_guide/models/user_repository.dart';
+import 'package:corunha_guide/services/user_repository.dart';
 import 'package:corunha_guide/screens/home_screen.dart';
 import 'package:corunha_guide/login/login.dart';
 import 'package:corunha_guide/screens/splash_screen.dart';
@@ -33,6 +33,7 @@ class _AppState extends State<App> {
     return BlocProvider(
       bloc: _authenticationBloc,
       child: MaterialApp(
+        theme: ThemeData(),
         home: BlocBuilder(
           bloc: _authenticationBloc,
           builder: (BuildContext context, AuthenticationState state) {

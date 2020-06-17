@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:corunha_guide/authentication_bloc/bloc.dart';
-import 'package:corunha_guide/models/user_repository.dart';
+import 'package:corunha_guide/services/user_repository.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {

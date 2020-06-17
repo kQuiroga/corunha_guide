@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:corunha_guide/authentication_bloc/bloc.dart';
+import 'package:corunha_guide/components/categories/categories.dart';
 
 class HomeScreen extends StatelessWidget {
   final String name;
@@ -23,12 +24,7 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Center(child: Text('Welcome $name!')),
-        ],
-      ),
+      body: Categories(),
     );
   }
 }

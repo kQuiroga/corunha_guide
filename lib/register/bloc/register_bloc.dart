@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:corunha_guide/models/user_repository.dart';
+import 'package:corunha_guide/services/user_repository.dart';
 import 'package:corunha_guide/register/register.dart';
 import 'package:corunha_guide/validators.dart';
 
