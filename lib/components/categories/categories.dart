@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:scroll_snap_list/scroll_snap_list.dart';
+import 'package:flutter_shine/flutter_shine.dart';
 import 'package:corunha_guide/services/crud_category.dart';
 import 'package:corunha_guide/models/category_model.dart';
 import 'dart:math';
@@ -14,8 +13,6 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  int _focusedIndex = -1;
-  List<String> listImages;
   List<CategoryModel> items;
   CrudCategory _crud = CrudCategory();
   StreamSubscription<QuerySnapshot> categoriesSub;
@@ -24,7 +21,6 @@ class _CategoriesState extends State<Categories> {
   void initState() {
     super.initState();
     items = List();
-    listImages = List();
     categoriesSub?.cancel();
     categoriesSub = _crud.getCategoriesList().listen((QuerySnapshot snapshot) {
       final List<CategoryModel> categories = snapshot.documents
@@ -37,70 +33,60 @@ class _CategoriesState extends State<Categories> {
     });
   }
 
-  void _onItemFocus(int index) {
-    print(index);
-    setState(() {
-      _focusedIndex = index;
-    });
-  }
-
   Widget _buildListItem(BuildContext context, int index) {
     return Container(
-      width: 150,
       child: Column(
         children: <Widget>[
           Container(
             height: 200,
-            width: 200,
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            width: 175,
+            margin: EdgeInsets.fromLTRB(10, 10, 0, 10),
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(items[index].imgUrl),
-                    fit: BoxFit.cover),
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                border: Border.all(color: Colors.black, width: 0.5)),
-            child: Text(
-              "${items[index].name}",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 16.0, shadows: [
-                Shadow(
-                    blurRadius: 20.0,
-                    color: Colors.black,
-                    offset: Offset(10.0, 10.0))
-              ]),
+              image: DecorationImage(
+                  image: NetworkImage(items[index].imgUrl), fit: BoxFit.cover),
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 4,
+                  offset: Offset(0, 3),
+                ),
+              ],
             ),
+          ),
+          FlutterShine(
+            config: Config(
+              shadowColor: Colors.black,
+            ),
+            light: Light(intensity: 1, position: Point(-10, -10)),
+            builder: (context, shineShadow) {
+              return Text(
+                "${items[index].name}",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  shadows: shineShadow.shadows,
+                ),
+              );
+            },
           ),
         ],
       ),
     );
   }
 
-  ///Override default dynamicItemSize calculation
-  double customEquation(double distance) {
-    // return 1-min(distance.abs()/500, 0.2);
-    return 1 - (distance / 1000);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Text(
-            'Categories',
-            textAlign: TextAlign.left,
-          ),
-          Expanded(
-            child: ScrollSnapList(
-              onItemFocus: _onItemFocus,
-              itemSize: 150,
-              itemBuilder: _buildListItem,
-              itemCount: items.length,
-              dynamicItemSize: true,
-              // dynamicSizeEquation: customEquation, //optional
-            ),
-          ),
-        ],
+    return Expanded(
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return _buildListItem(context, index);
+        },
       ),
     );
   }

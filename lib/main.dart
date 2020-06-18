@@ -33,7 +33,9 @@ class _AppState extends State<App> {
     return BlocProvider(
       bloc: _authenticationBloc,
       child: MaterialApp(
-        theme: ThemeData(),
+        theme: ThemeData(
+          fontFamily: 'Roboto',
+        ),
         home: BlocBuilder(
           bloc: _authenticationBloc,
           builder: (BuildContext context, AuthenticationState state) {

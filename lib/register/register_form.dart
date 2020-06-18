@@ -41,7 +41,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Registering...'),
+                    Text('Registrando...'),
                     CircularProgressIndicator(),
                   ],
                 ),

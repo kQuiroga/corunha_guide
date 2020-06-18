@@ -11,20 +11,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Inicio'),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Idioma',
+              textAlign: TextAlign.end,
+            ),
+          ),
+          FlatButton(
+            textColor: Colors.red,
+            child: Text(
+              'Cerrar sesión',
+            ),
             onPressed: () {
               BlocProvider.of<AuthenticationBloc>(context).dispatch(
                 LoggedOut(),
               );
             },
-          )
+          ),
         ],
       ),
-      body: Categories(),
+      body: Column(
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topCenter,
+            margin: EdgeInsets.all(10.0),
+            padding: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width / 1.75),
+            child: Text(
+              'Categorías',
+              style: TextStyle(fontSize: 25),
+            ),
+          ),
+          Categories(),
+        ],
+      ),
     );
   }
 }
