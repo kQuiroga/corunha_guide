@@ -1,3 +1,4 @@
+import 'package:corunha_guide/components/popular_spots/popular_spots.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:corunha_guide/authentication_bloc/bloc.dart';
@@ -7,6 +8,18 @@ class HomeScreen extends StatelessWidget {
   final String name;
 
   HomeScreen({Key key, @required this.name}) : super(key: key);
+
+  Widget _createSectionTitle(BuildContext context, String title) {
+    return Container(
+      alignment: Alignment.topCenter,
+      margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width / 1.75),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 25),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,17 +50,10 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Container(
-            alignment: Alignment.topCenter,
-            margin: EdgeInsets.all(10.0),
-            padding: EdgeInsets.only(
-                right: MediaQuery.of(context).size.width / 1.75),
-            child: Text(
-              'Categorías',
-              style: TextStyle(fontSize: 25),
-            ),
-          ),
+          _createSectionTitle(context, 'Categorías'),
           Categories(),
+          _createSectionTitle(context, 'Sitios Populares'),
+          PopularSpots(),
         ],
       ),
     );

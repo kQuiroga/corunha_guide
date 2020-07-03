@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shine/flutter_shine.dart';
 import 'package:corunha_guide/services/crud_category.dart';
 import 'package:corunha_guide/models/category_model.dart';
+import 'package:corunha_guide/screens/list_categories_items_screen.dart';
+
 import 'dart:math';
 
 class Categories extends StatefulWidget {
@@ -37,22 +39,34 @@ class _CategoriesState extends State<Categories> {
     return Container(
       child: Column(
         children: <Widget>[
-          Container(
-            height: 200,
-            width: 175,
-            margin: EdgeInsets.fromLTRB(10, 10, 0, 10),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(items[index].imgUrl), fit: BoxFit.cover),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 4,
-                  offset: Offset(0, 3),
-                ),
-              ],
+          GestureDetector(
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return ListCategoriesItemsScreen(
+                    categoriesType: items[index].name,
+                  );
+                },
+              ),
+            ),
+            child: Container(
+              height: 200,
+              width: 175,
+              margin: EdgeInsets.fromLTRB(10, 10, 0, 10),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(items[index].imgUrl),
+                    fit: BoxFit.cover),
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
             ),
           ),
           FlutterShine(

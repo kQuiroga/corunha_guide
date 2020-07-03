@@ -8,4 +8,10 @@ class CrudCategory {
     Stream<QuerySnapshot> snapshots = _db.collection('categorias').snapshots();
     return snapshots;
   }
+
+  Stream<QuerySnapshot> getPopularSpotsList() {
+    Stream<QuerySnapshot> snapshots =
+        _db.collection('stitiosPopulares').snapshots();
+    return snapshots;
+  }
 }
