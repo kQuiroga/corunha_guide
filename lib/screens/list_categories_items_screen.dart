@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:corunha_guide/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:corunha_guide/services/list_categories_items_repository.dart';
 import 'package:corunha_guide/models/category_items_model.dart';
@@ -39,26 +40,48 @@ class _ListCategoriesItemsScreenState extends State<ListCategoriesItemsScreen> {
   }
 
   Widget _buildListItems(BuildContext context, int index) {
-    return Card(
-      elevation: 5.0,
-      shadowColor: Colors.black38,
-      margin: EdgeInsets.symmetric(
-        horizontal: 10.0,
-        vertical: 10.0,
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return DetailsScreen(
+              itemSelected: items[index],
+            );
+          },
+        ),
       ),
-      child: ListTile(
-        trailing: Icon(Icons.keyboard_arrow_right),
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width / 40,
-          vertical: MediaQuery.of(context).size.width / 40,
+      child: Card(
+        elevation: 8.0,
+        shadowColor: Colors.black87,
+        margin: EdgeInsets.symmetric(
+          horizontal: 10.0,
+          vertical: 10.0,
         ),
-        leading: CircleAvatar(
-          radius: 30.0,
+        child: Center(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                child: Image.network(
+                  items[index].imgUrl,
+                  height: 200,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  items[index].name,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0),
+                ),
+              )
+            ],
+          ),
         ),
-        title: Text(
-          items[index].name,
-        ),
-        subtitle: Text('Breve Descripción'),
       ),
     );
   }

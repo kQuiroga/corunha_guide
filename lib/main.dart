@@ -35,6 +35,8 @@ class _AppState extends State<App> {
       child: MaterialApp(
         theme: ThemeData(
           fontFamily: 'Roboto',
+          primarySwatch: Colors.blue,
+          accentColor: const Color(0xFFFF5959),
         ),
         home: BlocBuilder(
           bloc: _authenticationBloc,

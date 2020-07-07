@@ -11,9 +11,12 @@ class HomeScreen extends StatelessWidget {
 
   Widget _createSectionTitle(BuildContext context, String title) {
     return Container(
-      alignment: Alignment.topCenter,
-      margin: EdgeInsets.all(10.0),
-      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width / 1.75),
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.fromLTRB(
+          MediaQuery.of(context).size.width / 30,
+          MediaQuery.of(context).size.height / 35,
+          0,
+          MediaQuery.of(context).size.height / 70),
       child: Text(
         title,
         style: TextStyle(fontSize: 25),
