@@ -46,6 +46,7 @@ class _ListCategoriesItemsScreenState extends State<ListCategoriesItemsScreen> {
           builder: (BuildContext context) {
             return DetailsScreen(
               itemSelected: items[index],
+              categoryType: widget.categoriesType,
             );
           },
         ),
@@ -61,9 +62,24 @@ class _ListCategoriesItemsScreenState extends State<ListCategoriesItemsScreen> {
           child: Stack(
             children: <Widget>[
               Container(
+                height: 200,
+                width: double.infinity,
                 alignment: Alignment.center,
                 child: Image.network(
                   items[index].imgUrl,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.amber,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes
+                            : null,
+                      ),
+                    );
+                  },
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,

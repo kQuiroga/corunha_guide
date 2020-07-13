@@ -13,7 +13,7 @@ class ArcBannerImage extends StatelessWidget {
       child: Image.network(
         imageUrl,
         width: screenWidth,
-        height: 230.0,
+        height: 200.0,
         fit: BoxFit.cover,
       ),
     );

@@ -7,14 +7,14 @@ class GoogleMapsButton extends StatelessWidget {
 
   _launchUrlMaps() async {
     String query = Uri.encodeComponent(address);
-    String googleUrl = "https://www.google.com/maps/search/?api=1&query=$query";
+    final googleUrl = "https://www.google.com/maps/search/?api=1&query=";
 
-    if (await canLaunch(googleUrl)) {
+    if (await canLaunch(googleUrl + query)) {
       await launch(
         googleUrl,
       );
     } else {
-      throw 'No se pudo abrir Google Maps para $googleUrl';
+      throw 'No se pudo abrir Google Maps para ${googleUrl + query}';
     }
   }
 

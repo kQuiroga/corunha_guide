@@ -24,15 +24,11 @@ class ItemMainInfo extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.3,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
+            spreadRadius: 1,
             blurRadius: 7,
             offset: Offset(0, 3),
           ),
@@ -55,16 +51,25 @@ class ItemMainInfo extends StatelessWidget {
             ),
           ),
           _checkTimeExists(itemInfo.time)
-              ? null
-              : Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  child: Divider(
-                    color: Colors.black87,
-                    height: 1,
-                    indent: 70,
-                    endIndent: 70,
-                  ),
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.av_timer),
+                    Text(itemInfo.time),
+                  ],
+                )
+              : SizedBox(
+                  height: 5,
                 ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: Divider(
+              color: Colors.black87,
+              height: 1,
+              indent: 70,
+              endIndent: 70,
+            ),
+          ),
           GoogleMapsButton(
             itemInfo.address,
           ),

@@ -33,6 +33,7 @@ class _AppState extends State<App> {
     return BlocProvider(
       bloc: _authenticationBloc,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Roboto',
           primarySwatch: Colors.blue,
@@ -40,6 +41,7 @@ class _AppState extends State<App> {
         ),
         home: BlocBuilder(
           bloc: _authenticationBloc,
+          // ignore: missing_return
           builder: (BuildContext context, AuthenticationState state) {
             if (state is Uninitialized) {
               return SplashScreen();

@@ -1,3 +1,4 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 class ItemAbout extends StatelessWidget {
@@ -6,39 +7,63 @@ class ItemAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var textTheme = Theme.of(context).textTheme;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          'Acerca de',
-          style: textTheme.subtitle1.copyWith(fontSize: 18.0),
-        ),
-        SizedBox(height: 8.0),
-        Text(
-          about,
-          style: textTheme.bodyText2.copyWith(
-            color: Colors.black45,
-            fontSize: 16.0,
+        ExpandableNotifier(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              elevation: 4,
+              child: Column(
+                children: <Widget>[
+                  ScrollOnExpand(
+                    scrollOnExpand: true,
+                    scrollOnCollapse: false,
+                    child: ExpandablePanel(
+                      theme: ExpandableThemeData(
+                        headerAlignment: ExpandablePanelHeaderAlignment.center,
+                        tapBodyToCollapse: true,
+                        iconColor: Theme.of(context).accentColor,
+                      ),
+                      header: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Text(
+                            'Acerca de',
+                            style: Theme.of(context).textTheme.headline5,
+                          )),
+                      collapsed: Text(
+                        about,
+                        softWrap: true,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      expanded: Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          about,
+                          softWrap: true,
+                          overflow: TextOverflow.fade,
+                        ),
+                      ),
+                      builder: (_, collapsed, expanded) {
+                        return Padding(
+                          padding:
+                              EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                          child: Expandable(
+                            collapsed: collapsed,
+                            expanded: expanded,
+                            theme: const ExpandableThemeData(crossFadePoint: 0),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              'más',
-              style: textTheme.bodyText2
-                  .copyWith(fontSize: 16.0, color: theme.accentColor),
-            ),
-            Icon(
-              Icons.keyboard_arrow_down,
-              size: 18.0,
-              color: theme.accentColor,
-            ),
-          ],
         )
       ],
     );

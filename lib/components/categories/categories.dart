@@ -2,12 +2,9 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shine/flutter_shine.dart';
 import 'package:corunha_guide/services/crud_category.dart';
 import 'package:corunha_guide/models/category_model.dart';
 import 'package:corunha_guide/screens/list_categories_items_screen.dart';
-
-import 'dart:math';
 
 class Categories extends StatefulWidget {
   @override
@@ -69,22 +66,13 @@ class _CategoriesState extends State<Categories> {
               ),
             ),
           ),
-          FlutterShine(
-            config: Config(
-              shadowColor: Colors.black,
+          Text(
+            "${items[index].name}",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 20.0,
             ),
-            light: Light(intensity: 1, position: Point(-10, -10)),
-            builder: (context, shineShadow) {
-              return Text(
-                "${items[index].name}",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  shadows: shineShadow.shadows,
-                ),
-              );
-            },
           ),
         ],
       ),
