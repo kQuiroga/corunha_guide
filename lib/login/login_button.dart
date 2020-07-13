@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
@@ -14,7 +15,7 @@ class LoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(30.0),
       ),
       onPressed: _onPressed,
-      child: Text('Iniciar sesión'),
+      child: Text(AppLocalizations.of(context).getTranslatedValue('log_in')),
     );
   }
 }

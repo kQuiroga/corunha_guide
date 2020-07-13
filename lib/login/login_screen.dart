@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:corunha_guide/services/user_repository.dart';
@@ -30,7 +31,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Iniciar sesión')),
+      appBar: AppBar(
+          title:
+              Text(AppLocalizations.of(context).getTranslatedValue('log_in'))),
       body: BlocProvider<LoginBloc>(
         bloc: _loginBloc,
         child: LoginForm(userRepository: _userRepository),

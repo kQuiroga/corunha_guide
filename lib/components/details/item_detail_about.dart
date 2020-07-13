@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,8 @@ class ItemAbout extends StatelessWidget {
                       header: Padding(
                           padding: EdgeInsets.all(10),
                           child: Text(
-                            'Acerca de',
+                            AppLocalizations.of(context)
+                                .getTranslatedValue('about'),
                             style: Theme.of(context).textTheme.headline5,
                           )),
                       collapsed: Text(
@@ -54,7 +56,7 @@ class ItemAbout extends StatelessWidget {
                           child: Expandable(
                             collapsed: collapsed,
                             expanded: expanded,
-                            theme: const ExpandableThemeData(crossFadePoint: 0),
+                            theme: ExpandableThemeData(crossFadePoint: 0),
                           ),
                         );
                       },

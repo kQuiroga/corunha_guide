@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:corunha_guide/components/details/item_detail_about.dart';
 import 'package:corunha_guide/components/details/item_detail_header.dart';
 import 'package:corunha_guide/components/details/photo_album.dart';
@@ -21,7 +22,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Detalles'),
+          title:
+              Text(AppLocalizations.of(context).getTranslatedValue('details')),
         ),
         body: SingleChildScrollView(
           child: Column(

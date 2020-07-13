@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:corunha_guide/models/category_items_model.dart';
 import 'package:corunha_guide/services/rating_repository.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _RatingState extends State<Rating> {
   List ratings;
   RatingRepository _ratingRepository = RatingRepository();
   StreamSubscription<QuerySnapshot> subStreamGetRatings;
-  double globalRating;
+  var globalRating;
 
   @override
   void initState() {
@@ -36,6 +37,8 @@ class _RatingState extends State<Rating> {
           .toList();
       setState(() {
         this.ratings = subStreamValues;
+        this.globalRating =
+            double.parse(ratings.first.mediaRating.toStringAsFixed(2));
       });
     });
   }
@@ -49,19 +52,24 @@ class _RatingState extends State<Rating> {
         .map((val) => val.toDouble())
         .fold(0, (previous, current) => previous + current);
 
-    var globalRating = sum / numOfRatings;
+    double globalRating = sum / numOfRatings;
 
     _ratingRepository.updateMediaRating(
         globalRating, widget.itemName, widget.categoryType);
 
     setState(() {
       this.rating = rating;
-      this.globalRating = globalRating;
+      this.globalRating = globalRating.round();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    String ratingLocale =
+        AppLocalizations.of(context).getTranslatedValue('rating');
+    String globalRatingLocale =
+        AppLocalizations.of(context).getTranslatedValue('rating_global');
+
     return Column(
       children: <Widget>[
         RatingBar(
@@ -80,8 +88,8 @@ class _RatingState extends State<Rating> {
             color: Colors.amber,
           ),
         ),
-        Text('Tu valoración: $rating'),
-        Text('Valoración global: $globalRating')
+        Text(ratingLocale + ': $rating'),
+        Text(globalRatingLocale + ': $globalRating')
       ],
     );
   }

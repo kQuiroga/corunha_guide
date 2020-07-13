@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:corunha_guide/services/crud_category.dart';
 import 'package:corunha_guide/models/category_model.dart';
@@ -33,6 +34,8 @@ class _CategoriesState extends State<Categories> {
   }
 
   Widget _buildListItem(BuildContext context, int index) {
+    String categoryLocale =
+        AppLocalizations.of(context).getTranslatedValue(items[index].name);
     return Container(
       child: Column(
         children: <Widget>[
@@ -67,7 +70,7 @@ class _CategoriesState extends State<Categories> {
             ),
           ),
           Text(
-            "${items[index].name}",
+            categoryLocale,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.grey,

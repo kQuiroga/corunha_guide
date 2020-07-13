@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:corunha_guide/services/user_repository.dart';
@@ -51,7 +52,8 @@ class _LoginFormState extends State<LoginForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Fallo al iniciar sesión'),
+                    Text(AppLocalizations.of(context)
+                        .getTranslatedValue('log_in_failed')),
                     Icon(Icons.error)
                   ],
                 ),
@@ -67,7 +69,8 @@ class _LoginFormState extends State<LoginForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Iniciando sesión...'),
+                    Text(AppLocalizations.of(context)
+                        .getTranslatedValue('log_in_loading')),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -99,21 +102,26 @@ class _LoginFormState extends State<LoginForm> {
                     autovalidate: true,
                     autocorrect: false,
                     validator: (_) {
-                      return !state.isEmailValid ? 'Email incorrecto' : null;
+                      return !state.isEmailValid
+                          ? AppLocalizations.of(context)
+                              .getTranslatedValue('incorrect_email')
+                          : null;
                     },
                   ),
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.lock),
-                      labelText: 'Contraseña',
+                      labelText: AppLocalizations.of(context)
+                          .getTranslatedValue('password'),
                     ),
                     obscureText: true,
                     autovalidate: true,
                     autocorrect: false,
                     validator: (_) {
                       return !state.isPasswordValid
-                          ? 'Contraseña incorrecta'
+                          ? AppLocalizations.of(context)
+                              .getTranslatedValue('incorrect_password')
                           : null;
                     },
                   ),

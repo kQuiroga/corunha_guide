@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:corunha_guide/services/user_repository.dart';
 import 'package:corunha_guide/register/register.dart';
@@ -14,7 +15,7 @@ class CreateAccountButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
       child: Text(
-        'Crear una cuenta',
+        AppLocalizations.of(context).getTranslatedValue('register'),
       ),
       onPressed: () {
         Navigator.of(context).push(

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:corunha_guide/components/details/google_maps_button.dart';
 import 'package:corunha_guide/models/category_items_model.dart';
 import 'package:flutter/material.dart';
@@ -37,17 +38,19 @@ class ItemMainInfo extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Text(
+            padding: const EdgeInsets.only(top: 8, left: 10, right: 10),
+            child: AutoSizeText(
               itemInfo.name,
               style: textTheme.headline6.copyWith(fontSize: 20.0),
+              maxLines: 1,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
+            child: AutoSizeText(
               itemInfo.address,
-              style: textTheme.headline3.copyWith(fontSize: 13.0),
+              style: textTheme.headline3.copyWith(fontSize: 12.0),
+              maxLines: 1,
             ),
           ),
           _checkTimeExists(itemInfo.time)

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:corunha_guide/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:corunha_guide/services/list_categories_items_repository.dart';
@@ -104,9 +105,11 @@ class _ListCategoriesItemsScreenState extends State<ListCategoriesItemsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String categoryLocale =
+        AppLocalizations.of(context).getTranslatedValue(widget.categoriesType);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.categoriesType),
+        title: Text(categoryLocale),
       ),
       body: ListView.builder(
         itemCount: items.length,

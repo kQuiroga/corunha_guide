@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:corunha_guide/models/category_items_model.dart';
 import 'package:corunha_guide/services/storage_repository.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class PhotoAlbum extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
-            'Fotos',
+            AppLocalizations.of(context).getTranslatedValue('pictures'),
             style: textTheme.subtitle1.copyWith(fontSize: 18.0),
           ),
         ),

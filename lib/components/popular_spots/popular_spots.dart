@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:corunha_guide/services/crud_category.dart';
 import 'package:flutter/material.dart';
 import 'package:corunha_guide/models/popular_spots_model.dart';
