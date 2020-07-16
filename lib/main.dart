@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:corunha_guide/authentication_bloc/bloc.dart';
-import 'package:corunha_guide/services/user_repository.dart';
+import 'package:corunha_guide/repository/user_repository.dart';
 import 'package:corunha_guide/screens/home_screen.dart';
 import 'package:corunha_guide/login/login.dart';
 import 'package:corunha_guide/screens/splash_screen.dart';

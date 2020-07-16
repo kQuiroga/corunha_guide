@@ -1,16 +1,22 @@
 {
-    "home_page": "Home Page",
+    "home_page": "Home",
     "log_out": "Log out",
     "categories": "Categories",
     "popular_spots": "Popular Spots",
     "details": "Details",
     "log_in": "Log In",
+    "log_in_screen": "Log In",
     "log_in_google": "Log In with Google",
     "register": "Create new account",
+    "sign_up": "Sign Up",
+    "sign_up_loading": "Signing up...",
+    "sign_up_failure": "Sing Up failed",
+    "invalid_email": "Invalid Email",
     "log_in_failed": "Failed Log In",
     "log_in_loading": "Loging in...",
     "incorrect_email": "Incorrect Email",
     "password": "Password",
+    "invalid_password": "Invalidad Passwod",
     "incorrect_password": "Incorrect Password",
     "rating": "Your rating",
     "rating_global": "Global Rating",
@@ -21,5 +27,6 @@
     "Monumentos": "Monuments",
     "Playas": "Beaches",
     "Restaurantes": "Restaurants",
-    "Museos": "Museums"
+    "Museos": "Museums",
+    "language": "Language"
 }

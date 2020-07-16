@@ -1,6 +1,7 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:corunha_guide/services/user_repository.dart';
+import 'package:corunha_guide/repository/user_repository.dart';
 import 'package:corunha_guide/register/register.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -28,7 +29,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Registrarse')),
+      appBar: AppBar(
+          title:
+              Text(AppLocalizations.of(context).getTranslatedValue('sign_up'))),
       body: Center(
         child: BlocProvider<RegisterBloc>(
           bloc: _registerBloc,

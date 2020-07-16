@@ -1,7 +1,7 @@
 import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:corunha_guide/services/user_repository.dart';
+import 'package:corunha_guide/repository/user_repository.dart';
 import 'package:corunha_guide/login/login.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -32,8 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title:
-              Text(AppLocalizations.of(context).getTranslatedValue('log_in'))),
+          title: Text(AppLocalizations.of(context)
+              .getTranslatedValue('log_in_screen'))),
       body: BlocProvider<LoginBloc>(
         bloc: _loginBloc,
         child: LoginForm(userRepository: _userRepository),

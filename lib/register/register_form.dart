@@ -1,3 +1,4 @@
+import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:corunha_guide/authentication_bloc/bloc.dart';
@@ -41,7 +42,8 @@ class _RegisterFormState extends State<RegisterForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Registrando...'),
+                    Text(AppLocalizations.of(context)
+                        .getTranslatedValue('sign_up_loading')),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -60,7 +62,8 @@ class _RegisterFormState extends State<RegisterForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Registration Failure'),
+                    Text(AppLocalizations.of(context)
+                        .getTranslatedValue('sign_up_failure')),
                     Icon(Icons.error),
                   ],
                 ),
@@ -86,20 +89,27 @@ class _RegisterFormState extends State<RegisterForm> {
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return !state.isEmailValid ? 'Invalid Email' : null;
+                      return !state.isEmailValid
+                          ? AppLocalizations.of(context)
+                              .getTranslatedValue('invalid_email')
+                          : null;
                     },
                   ),
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.lock),
-                      labelText: 'Password',
+                      labelText: AppLocalizations.of(context)
+                          .getTranslatedValue('password'),
                     ),
                     obscureText: true,
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return !state.isPasswordValid ? 'Invalid Password' : null;
+                      return !state.isPasswordValid
+                          ? AppLocalizations.of(context)
+                              .getTranslatedValue('invalid_password')
+                          : null;
                     },
                   ),
                   RegisterButton(

@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:corunha_guide/login/login.dart';
-import 'package:corunha_guide/services/user_repository.dart';
+import 'package:corunha_guide/repository/user_repository.dart';
 import 'package:corunha_guide/validators.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {

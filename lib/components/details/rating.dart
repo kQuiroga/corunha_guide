@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:corunha_guide/app_localizations.dart';
 import 'package:corunha_guide/models/category_items_model.dart';
-import 'package:corunha_guide/services/rating_repository.dart';
+import 'package:corunha_guide/models/popular_spots_model.dart';
+import 'package:corunha_guide/repository/rating_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -28,24 +29,47 @@ class _RatingState extends State<Rating> {
   void initState() {
     super.initState();
     ratings = List();
-    subStreamGetRatings?.cancel();
-    subStreamGetRatings = _ratingRepository
-        .getRating(widget.categoryType, widget.itemName)
-        .listen((QuerySnapshot snapshot) {
-      List subStreamValues = snapshot.documents
-          .map((e) => CategoryItemsModel.fromMap(e.data, e.documentID))
-          .toList();
-      setState(() {
-        this.ratings = subStreamValues;
-        this.globalRating =
-            double.parse(ratings.first.mediaRating.toStringAsFixed(2));
+
+    if (widget.categoryType != '') {
+      subStreamGetRatings?.cancel();
+      subStreamGetRatings = _ratingRepository
+          .getRating(widget.categoryType, widget.itemName)
+          .listen((QuerySnapshot snapshot) {
+        List subStreamValues = snapshot.documents
+            .map((e) => CategoryItemsModel.fromMap(e.data, e.documentID))
+            .toList();
+        setState(() {
+          this.ratings = subStreamValues;
+          this.globalRating =
+              double.parse(ratings.first.mediaRating.toStringAsFixed(2));
+        });
       });
-    });
+    } else {
+      subStreamGetRatings?.cancel();
+      subStreamGetRatings = _ratingRepository
+          .getRating(widget.categoryType, widget.itemName)
+          .listen((QuerySnapshot snapshot) {
+        List subStreamValues = snapshot.documents
+            .map((e) => PopularSpotsModel.fromMap(e.data, e.documentID))
+            .toList();
+        setState(() {
+          this.ratings = subStreamValues;
+          this.globalRating =
+              double.parse(ratings.first.mediaRating.toStringAsFixed(2));
+        });
+      });
+    }
   }
 
   _setRating(double rating) async {
-    List<dynamic> valuesToCalculateMedia = await _ratingRepository.sendRating(
-        widget.categoryType, rating, widget.itemName);
+    List<dynamic> valuesToCalculateMedia;
+    if (widget.categoryType != '') {
+      valuesToCalculateMedia = await _ratingRepository.sendRating(
+          widget.categoryType, rating, widget.itemName);
+    } else {
+      valuesToCalculateMedia = await _ratingRepository.sendRatingPopularSpot(
+          rating, widget.itemName);
+    }
 
     final numOfRatings = valuesToCalculateMedia.length;
     var sum = valuesToCalculateMedia
@@ -54,8 +78,15 @@ class _RatingState extends State<Rating> {
 
     double globalRating = sum / numOfRatings;
 
-    _ratingRepository.updateMediaRating(
-        globalRating, widget.itemName, widget.categoryType);
+    if (widget.categoryType != '') {
+      _ratingRepository.updateMediaRating(
+          categoryType: widget.categoryType,
+          itemName: widget.itemName,
+          media: globalRating);
+    } else {
+      _ratingRepository.updateMediaPopularSpotRating(
+          itemName: widget.itemName, media: globalRating);
+    }
 
     setState(() {
       this.rating = rating;
@@ -89,7 +120,10 @@ class _RatingState extends State<Rating> {
           ),
         ),
         Text(ratingLocale + ': $rating'),
-        Text(globalRatingLocale + ': $globalRating')
+        Text(globalRatingLocale + ': $globalRating'),
+        SizedBox(
+          height: 20,
+        )
       ],
     );
   }

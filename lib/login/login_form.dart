@@ -1,7 +1,7 @@
 import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:corunha_guide/services/user_repository.dart';
+import 'package:corunha_guide/repository/user_repository.dart';
 import 'package:corunha_guide/authentication_bloc/bloc.dart';
 import 'package:corunha_guide/login/login.dart';
 

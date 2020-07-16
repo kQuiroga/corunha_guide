@@ -1,16 +1,22 @@
 {
-    "home_page": "Pagina Inicio",
+    "home_page": "Inicio",
     "log_out": "Cerrar sesión",
     "categories": "Categorías",
     "popular_spots": "Sitios Populares",
     "details": "Detalles",
+    "log_in_screen": "Inicio de sesión",
     "log_in": "Iniciar sesión",
     "log_in_google": "Iniciar sesion con Google",
     "register": "Crear nueva cuenta",
+    "sign_up": "Registrarse",
+    "sign_up_loading": "Registrando...",
+    "sign_up_failure": "Fallo al registrarse",
+    "invalid_email": "Email inválido",
     "log_in_failed": "Fallo al iniciar sesión",
     "log_in_loading": "Iniciando sesión...",
     "incorrect_email": "Correo inválido",
     "password": "Contraseña",
+    "invalid_password": "Contraseña inválida",
     "incorrect_password": "Contraseña incorrecta",
     "rating": "Tú valoración",
     "rating_global": "Valoración global",
@@ -21,5 +27,6 @@
     "Monumentos": "Monumentos",
     "Playas": "Playas",
     "Restaurantes": "Restaurantes",
-    "Museos": "Museuos"
+    "Museos": "Museos",
+    "language": "Idioma"
 }

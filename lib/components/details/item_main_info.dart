@@ -4,7 +4,7 @@ import 'package:corunha_guide/models/category_items_model.dart';
 import 'package:flutter/material.dart';
 
 class ItemMainInfo extends StatelessWidget {
-  final CategoryItemsModel itemInfo;
+  final itemInfo;
   const ItemMainInfo(this.itemInfo);
 
   bool _checkTimeExists(String time) {

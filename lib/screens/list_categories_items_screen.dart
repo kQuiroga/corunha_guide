@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:corunha_guide/app_localizations.dart';
 import 'package:corunha_guide/screens/details_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:corunha_guide/services/list_categories_items_repository.dart';
+import 'package:corunha_guide/repository/list_categories_items_repository.dart';
 import 'package:corunha_guide/models/category_items_model.dart';
 
 class ListCategoriesItemsScreen extends StatefulWidget {
@@ -46,7 +46,7 @@ class _ListCategoriesItemsScreenState extends State<ListCategoriesItemsScreen> {
         MaterialPageRoute(
           builder: (BuildContext context) {
             return DetailsScreen(
-              itemSelected: items[index],
+              itemCategorySelected: items[index],
               categoryType: widget.categoriesType,
             );
           },
@@ -77,7 +77,10 @@ class _ListCategoriesItemsScreenState extends State<ListCategoriesItemsScreen> {
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded /
                                 loadingProgress.expectedTotalBytes
-                            : null,
+                            : Icon(
+                                Icons.error,
+                                color: Colors.red,
+                              ),
                       ),
                     );
                   },

@@ -50,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String dropdownValue =
+        AppLocalizations.of(context).getTranslatedValue('language');
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
@@ -59,15 +61,17 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           Container(
             alignment: Alignment.centerLeft,
-            child: DropdownButton(
-              underline: SizedBox(),
-              icon: Icon(
-                Icons.language,
-                color: Colors.white,
-              ),
-              items: LanguageModel.languageList()
-                  .map<DropdownMenuItem<LanguageModel>>(
-                      (lang) => DropdownMenuItem(
+            child: Row(
+              children: [
+                DropdownButton(
+                  underline: SizedBox(),
+                  icon: Icon(Icons.language, color: Colors.white),
+                  iconSize: 24,
+                  elevation: 16,
+                  style: TextStyle(color: Colors.black),
+                  items: LanguageModel.languageList()
+                      .map<DropdownMenuItem<LanguageModel>>((lang) =>
+                          DropdownMenuItem(
                             value: lang,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -77,10 +81,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ))
-                  .toList(),
-              onChanged: (LanguageModel language) {
-                _changeLanguage(language);
-              },
+                      .toList(),
+                  onChanged: (LanguageModel languageModel) {
+                    _changeLanguage(languageModel);
+                  },
+                ),
+              ],
             ),
           ),
           FlatButton(

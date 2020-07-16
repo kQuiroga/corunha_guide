@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:corunha_guide/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:corunha_guide/services/crud_category.dart';
+import 'package:corunha_guide/repository/crud_category.dart';
 import 'package:corunha_guide/models/category_model.dart';
 import 'package:corunha_guide/screens/list_categories_items_screen.dart';
 
@@ -50,13 +50,8 @@ class _CategoriesState extends State<Categories> {
               ),
             ),
             child: Container(
-              height: 200,
-              width: 175,
               margin: EdgeInsets.fromLTRB(10, 10, 0, 10),
               decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(items[index].imgUrl),
-                    fit: BoxFit.cover),
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 boxShadow: [
                   BoxShadow(
@@ -66,6 +61,28 @@ class _CategoriesState extends State<Categories> {
                     offset: Offset(0, 3),
                   ),
                 ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  items[index].imgUrl,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.white,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes
+                            : Icon(Icons.error),
+                      ),
+                    );
+                  },
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: 175,
+                ),
               ),
             ),
           ),
