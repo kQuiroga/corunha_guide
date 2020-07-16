@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:corunha_guide/components/details/google_maps_button.dart';
-import 'package:corunha_guide/models/category_items_model.dart';
 import 'package:flutter/material.dart';
 
 class ItemMainInfo extends StatelessWidget {

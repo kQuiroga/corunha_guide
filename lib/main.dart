@@ -6,7 +6,6 @@ import 'package:corunha_guide/authentication_bloc/bloc.dart';
 import 'package:corunha_guide/repository/user_repository.dart';
 import 'package:corunha_guide/screens/home_screen.dart';
 import 'package:corunha_guide/login/login.dart';
-import 'package:corunha_guide/screens/splash_screen.dart';
 import 'package:corunha_guide/simple_bloc_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -78,9 +77,6 @@ class _AppState extends State<App> {
           bloc: _authenticationBloc,
           // ignore: missing_return
           builder: (BuildContext context, AuthenticationState state) {
-            if (state is Uninitialized) {
-              return SplashScreen();
-            }
             if (state is Unauthenticated) {
               return LoginScreen(userRepository: _userRepository);
             }
