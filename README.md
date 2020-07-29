@@ -4,3 +4,5 @@ This is my final vocacional degree project. It is build with Flutter that is a n
 
 
 ![Login Screen](https://i.imgur.com/DK50pnG.png) ![Home Screen](https://i.imgur.com/XVrgreD.png) 
+![Details Screen](https://i.imgur.com/98HopIy.png)
+ 
